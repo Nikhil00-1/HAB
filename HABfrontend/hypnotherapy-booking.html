@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hypnotherapy Booking | HAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .spinner {
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top: 3px solid white;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800 overflow-x-hidden">
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm px-6 py-6">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <img src="HABlogo.jpeg" alt="HAB Logo" class="w-14">
+    <button onclick="location.href='index.html'"
+      class="px-6 py-2 bg-gradient-to-r from-slate-900 to-teal-700 text-white rounded-full hover:shadow-lg transition">
+      Back to Home
+    </button>
+  </div>
+</nav>
+
+ <!-- PRACTITIONER PROFILE -->
+  <section class="py-14 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 items-center">
+
+      <!-- IMAGE -->
+      <div class="flex justify-center md:justify-start">
+        <div class="w-64 h-64 rounded-2xl shadow-xl overflow-hidden border">
+          <img src="./assets/images/doct.png" class="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      <!-- BIO -->
+      <div class="md:col-span-2 space-y-4">
+        <h2 class="text-4xl font-bold text-slate-900">Raj Agnani</h2>
+        <p class="text-teal-700 font-semibold text-lg">Certified Clinical Hypnotherapist (CHT)</p>
+
+        <p class="text-slate-600 leading-relaxed max-w-3xl">
+          With over <strong>17 years of clinical experience</strong>, Raj Agnani helps individuals overcome anxiety,
+          stress, fears, emotional blocks and behavioral challenges through advanced hypnotherapy techniques.
+          His work focuses on enabling deep transformation, confidence building, and emotional balance.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 pt-3 text-sm text-slate-700">
+          <div class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-teal-700"></i> Certified by
+            CHII</div>
+          <div class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-teal-700"></i> Certified
+            Chakra Analyst</div>
+          <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-teal-700"></i> Certified EFT
+            Therapist</div>
+          <div class="flex items-center gap-2"><i data-lucide="brain" class="w-4 h-4 text-teal-700"></i> NLP & Clinical
+            Hypnotherapy</div>
+        </div>
+
+        <p class="text-sm text-slate-500 pt-2">
+          Email: <span class="text-teal-700">raj.agnani@hab.net.in</span>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+<!-- FORM + SUMMARY -->
+<section class="px-6 py-14">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
+
+    <!-- FORM -->
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-3xl p-8 border shadow-lg">
+        <h1 class="text-3xl font-bold mb-6 flex items-center gap-2">
+          <i data-lucide="brain" class="text-teal-700"></i> Book Your Hypnotherapy Session
+        </h1>
+
+        <form id="bookingForm" class="space-y-6">
+          <input type="hidden" name="session" value="Initial Consultation (30 min) — $50" />
+
+          <input name="name" placeholder="Full Name" required class="w-full px-4 py-3 rounded-xl border focus:border-teal-700" />
+          <input name="email" type="email" placeholder="Email" required class="w-full px-4 py-3 rounded-xl border focus:border-teal-700" />
+          <input name="phone" placeholder="Phone" required class="w-full px-4 py-3 rounded-xl border focus:border-teal-700" />
+
+          <select name="doctor_id" class="w-full px-4 py-3 rounded-xl border focus:border-teal-700">
+            <option value="1">Raj Agnani</option>
+          </select>
+
+          <input type="date" name="date" required class="w-full px-4 py-3 rounded-xl border focus:border-teal-700" />
+
+          <select name="time" id="time-select" required class="w-full px-4 py-3 rounded-xl border">
+            <option value="">Select Time</option>
+          </select>
+
+          <textarea name="message" placeholder="Additional message"
+            class="w-full px-4 py-3 rounded-xl border focus:border-teal-700"></textarea>
+
+          <button type="submit"
+            class="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-slate-900 to-teal-700 text-white hover:shadow-lg transition">
+            Proceed to Payment
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="lg:col-span-1">
+      <div class="bg-white rounded-3xl p-6 border shadow-lg sticky top-8">
+        <h3 class="text-xl font-bold mb-6">Booking Summary</h3>
+        <div class="space-y-4 mb-6">
+          <div class="flex gap-3"><i data-lucide="brain" class="text-teal-700"></i>
+            <div><div class="text-sm text-slate-500">Therapy Type</div><div class="font-semibold">Hypnotherapy</div></div>
+          </div>
+          <div class="flex gap-3"><i data-lucide="clock" class="text-teal-700"></i>
+            <div><div class="text-sm text-slate-500">Session</div><div class="font-semibold">Initial Consultation (30 min)</div></div>
+          </div>
+        </div>
+        <div class="border-t pt-4 flex justify-between font-bold text-lg">
+          <span>Total Amount</span><span class="text-teal-700">$50</span>
+        </div>
+
+        <div class="bg-slate-100 rounded-xl p-4 space-y-3">
+          <div class="flex items-center space-x-2 text-sm">
+            <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i><span>Certified Practitioners</span>
+          </div>
+          <div class="flex items-center space-x-2 text-sm">
+            <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i><span>Secure Payment</span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAYMENT MODAL (UNCHANGED LOGIC) -->
+<div id="payment-modal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition">
+  <div class="w-[380px] rounded-3xl p-8 bg-white shadow-2xl relative">
+
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+      <i data-lucide="x"></i>
+    </button>
+
+    <h2 class="text-xl font-bold text-center mb-5">Scan & Pay</h2>
+
+    <div class="flex justify-center mb-6">
+      <img src="./assets/images/QR_code1.jpg" class="w-[200px] rounded-xl shadow" />
+    </div>
+
+    <input id="transaction-id" placeholder="Transaction ID"
+      class="w-full px-4 py-3 mb-5 border rounded-xl" />
+
+    <button onclick="finishPayment()"
+      class="w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-teal-700 to-slate-900 text-white flex justify-center items-center gap-2">
+      Finish Payment
+    </button>
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+/* TIME SLOT GENERATION — 30 MINUTES */
+const timeSelect = document.getElementById("time-select");
+let current = new Date();
+current.setHours(9, 0, 0, 0);
+const end = new Date();
+end.setHours(22, 0, 0, 0);
+
+while (current < end) {
+  const next = new Date(current.getTime() + 30 * 60000);
+  const option = document.createElement("option");
+  option.value =
+    current.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true }) +
+    " - " +
+    next.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true });
+  option.textContent = option.value;
+  timeSelect.appendChild(option);
+  current = next;
+}
+
+/* BOOKING + BACKEND LOGIC SAME AS OLD */
+let bookingData = {};
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const fd = new FormData(this);
+
+  bookingData = {
+    patientName: fd.get("name").trim(),
+    patientEmail: fd.get("email").trim(),
+    patientPhone: fd.get("phone").trim(),
+    doctorId: fd.get("doctor_id"),
+    appointmentDate: fd.get("date"),
+    appointmentTime: fd.get("time"),
+    sessionType: fd.get("session")
+  };
+
+  if (!bookingData.patientName || !bookingData.patientEmail || !bookingData.appointmentTime) {
+    alert("Missing required fields");
+    return;
+  }
+
+  document.getElementById("payment-modal").classList.remove("opacity-0","pointer-events-none");
+});
+
+function closeModal(){
+  document.getElementById("payment-modal").classList.add("opacity-0","pointer-events-none");
+}
+
+async function finishPayment(){
+  const txn = document.getElementById("transaction-id").value.trim();
+  if (!txn) return alert("Enter Transaction ID");
+
+  bookingData.transactionId = txn;
+
+  const res = await fetch("/api/create_booking.php", {
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify(bookingData)
+  });
+
+  const data = await res.json();
+  if(!data.success) return alert(data.error);
+
+  alert("Booking Confirmed");
+  location.reload();
+}
+</script>
+
+</body>
+</html>

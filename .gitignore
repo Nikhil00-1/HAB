@@ -1,0 +1,38 @@
+# ========================
+# ENVIRONMENT / SECRETS
+# ========================
+.env
+.env.*
+config.php
+
+# ========================
+# LOG FILES
+# ========================
+*.log
+debug.log
+smtp_debug.log
+
+# ========================
+# CACHE / TEMP
+# ========================
+*.tmp
+*.bak
+*.swp
+
+# ========================
+# OS FILES
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# EDITOR FILES
+# ========================
+.vscode/
+.idea/
+
+# ========================
+# DEPENDENCY JUNK (if ever added)
+# ========================
+node_modules/
+vendor/

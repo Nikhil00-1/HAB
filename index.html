@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hope Across Borders | HAB</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800 overflow-x-hidden">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50 backdrop-blur bg-white/90 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <img src="HABlogo.jpeg" alt="HAB Logo" class="w-14">
+      <!-- <a href="#hypnotherapy-section"
+      class="px-6 py-2 rounded-full bg-gradient-to-r from-slate-900 to-teal-700 text-white font-medium shadow hover:shadow-lg transition hover:scale-105">
+      Get Started
+    </a> -->
+
+      <div class="relative group inline-block">
+
+        <!-- BUTTON -->
+        <button
+          class="px-6 py-2 rounded-full bg-gradient-to-r from-slate-900 to-teal-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
+          Book Appointment
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"></i>
+        </button>
+
+        <!-- DROPDOWN -->
+        <div class="absolute right-0 top-full w-56 mt-2
+           bg-gradient-to-br from-white to-slate-50
+           rounded-2xl shadow-2xl border border-slate-200/60
+           opacity-0 invisible translate-y-2
+           group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+           transition-all duration-300 z-50 backdrop-blur-sm">
+
+          <a href="hypnotherapy-booking.html"
+            class="flex items-center gap-3 px-5 py-3 text-slate-700 hover:bg-teal-50 transition rounded-t-2xl">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-100">
+              <i data-lucide="brain" class="w-4 h-4 text-teal-700"></i>
+            </div>
+            <span class="font-medium">Hypnotherapy</span>
+          </a>
+
+          <a href="naturotherapy-booking.html"
+            class="flex items-center gap-3 px-5 py-3 text-slate-700 hover:bg-teal-50 transition rounded-b-2xl">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-100">
+              <i data-lucide="leaf" class="w-4 h-4 text-teal-700"></i>
+            </div>
+            <span class="font-medium">Naturopathy</span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="px-6 pt-20 pb-24 text-center">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6">
+      Transform Your Life Through
+      <span class="block bg-gradient-to-r from-slate-900 to-teal-700 bg-clip-text text-transparent">
+        Holistic Healing
+      </span>
+    </h1>
+    <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-12">
+      Discover world-class alternative medicine therapies tailored to your unique journey toward wellness.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      <div class="flex items-center gap-2 bg-white border border-slate-200 px-5 py-2 rounded-full shadow-sm">
+        <i data-lucide="globe" class="w-5 h-5 text-teal-600"></i> Global Network
+      </div>
+      <div class="flex items-center gap-2 bg-white border border-slate-200 px-5 py-2 rounded-full shadow-sm">
+        <i data-lucide="users" class="w-5 h-5 text-teal-600"></i> Personalized Care
+      </div>
+      <div class="flex items-center gap-2 bg-white border border-slate-200 px-5 py-2 rounded-full shadow-sm">
+        <i data-lucide="award" class="w-5 h-5 text-teal-600"></i> Expert Practitioners
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="px-6 py-16">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="bg-white rounded-2xl p-8 shadow border">
+        <div class="text-4xl font-bold text-teal-700">15K+</div>
+        <div class="text-slate-500 mt-2">Happy Patients</div>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow border">
+        <div class="text-4xl font-bold text-teal-700">98%</div>
+        <div class="text-slate-500 mt-2">Success Rate</div>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow border">
+        <div class="text-4xl font-bold text-teal-700">25+</div>
+        <div class="text-slate-500 mt-2">Countries Served</div>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow border">
+        <div class="text-4xl font-bold text-teal-700">50+</div>
+        <div class="text-slate-500 mt-2">Expert Practitioners</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPNOTHERAPY -->
+  <section id="hypnotherapy-section" class="px-6 py-20 bg-white text-center">
+    <i data-lucide="brain" class="w-16 h-16 text-teal-600 mx-auto mb-6"></i>
+    <h2 class="text-4xl font-bold mb-4">Hypnotherapy</h2>
+    <p class="text-slate-600 mb-8">Unlock the power of your subconscious mind through guided hypnotherapy sessions.</p>
+    <a href="hypnotherapy-booking.html"
+      class="px-10 py-4 rounded-full bg-gradient-to-r from-slate-900 to-teal-700 text-white font-semibold shadow">Explore
+      Hypnotherapy →</a>
+  </section>
+
+  <!-- WHY CHOOSE HAB -->
+  <section class="px-6 py-20 bg-slate-100">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">Why Choose HAB</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto">Experience the difference of truly personalized, world-class holistic
+        healthcare</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <div class="bg-white p-8 rounded-2xl shadow border">
+        <i data-lucide="shield" class="w-8 h-8 text-teal-600 mb-4"></i>
+        <h3 class="font-bold mb-2">Certified Excellence</h3>
+        <p class="text-slate-600 text-sm">Internationally certified practitioners with proven experience</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow border">
+        <i data-lucide="heart" class="w-8 h-8 text-teal-600 mb-4"></i>
+        <h3 class="font-bold mb-2">Personalized Care</h3>
+        <p class="text-slate-600 text-sm">Custom treatment plans for your unique journey</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow border">
+        <i data-lucide="globe" class="w-8 h-8 text-teal-600 mb-4"></i>
+        <h3 class="font-bold mb-2">Global Standards</h3>
+        <p class="text-slate-600 text-sm">World-class facilities & healthcare protocols</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow border">
+        <i data-lucide="users" class="w-8 h-8 text-teal-600 mb-4"></i>
+        <h3 class="font-bold mb-2">Holistic Approach</h3>
+        <p class="text-slate-600 text-sm">Mind, body & spirit treated in harmony</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NATUROPATHY -->
+  <section class="px-6 py-20 text-center bg-white">
+    <i data-lucide="leaf" class="w-16 h-16 text-teal-600 mx-auto mb-6"></i>
+    <h2 class="text-4xl font-bold mb-4">Naturopathy</h2>
+    <p class="text-slate-600 mb-8">Natural healing through nutrition, lifestyle balance, and holistic therapies.</p>
+    <a href="naturotherapy-booking.html"
+      class="px-10 py-4 rounded-full bg-gradient-to-r from-slate-900 to-teal-700 text-white font-semibold shadow">Explore
+      Naturopathy →</a>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="px-6 py-20 bg-slate-100">
+    <h2 class="text-4xl font-bold text-center mb-12">What Our Patients Say</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div class="bg-white p-8 rounded-2xl shadow border">
+        <p class="italic text-slate-600 mb-4">"Hypnotherapy completely transformed my stress management."</p>
+        <div class="font-semibold">Sarah Mitchell</div>
+        <div class="text-sm text-slate-500">United Kingdom</div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow border">
+        <p class="italic text-slate-600 mb-4">"Naturopathy gave me the holistic healing I was searching for."</p>
+        <div class="font-semibold">David Chen</div>
+        <div class="text-sm text-slate-500">Singapore</div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl shadow border">
+        <p class="italic text-slate-600 mb-4">"Both therapies helped me overcome anxiety and chronic pain."</p>
+        <div class="font-semibold">Maria Rodriguez</div>
+        <div class="text-sm text-slate-500">Spain</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 py-24 bg-gradient-to-r from-slate-900 to-teal-700 text-white text-center">
+    <h2 class="text-4xl font-bold mb-4">Begin Your Healing Journey Today</h2>
+    <p class="mb-8">Join thousands who have discovered holistic transformation.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="hypnotherapy-booking.html"
+        class="px-10 py-4 bg-white text-slate-900 rounded-full font-bold shadow">Schedule Consultation</a>
+      <button class="px-10 py-4 border border-white rounded-full font-bold">Download Brochure</button>
+    </div>
+  </section>
+
+  <!-- ORIGINAL FOOTER -->
+  <footer class="relative z-10 px-6 py-12 bg-white/80 backdrop-blur border-t">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 text-sm">
+      <div>
+        <div class="flex items-center space-x-2 mb-3">
+          <i data-lucide="sparkles" class="w-6 h-6 text-teal-600"></i>
+          <span class="text-lg font-bold">HAB</span>
+        </div>
+        <p class="text-gray-600">Transforming lives through holistic healing.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Services</h4>
+        <ul class="space-y-1 text-gray-600">
+          <li>Hypnotherapy</li>
+          <li>Naturopathy</li>
+          <li>Consultation</li>
+          <li>Wellness Programs</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Company</h4>
+        <ul class="space-y-1 text-gray-600">
+          <li>About Us</li>
+          <li>Our Team</li>
+          <li>Testimonials</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Legal</h4>
+        <ul class="space-y-1 text-gray-600">
+          <li>Privacy Policy</li>
+          <li>Terms of Service</li>
+          <li>Cookie Policy</li>
+          <li>Disclaimer</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+
+</html>

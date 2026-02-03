@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Naturopathy Booking | HAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    select option { color: black; background-color: white; }
+    .spinner {
+      border: 3px solid rgba(0,0,0,0.2);
+      border-radius: 50%;
+      border-top: 3px solid #0f172a;
+      width: 20px; height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm px-6 py-6">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <img src="HABlogo.jpeg" alt="HAB Logo" class="w-14">
+    <button onclick="location.href='index.html'" class="px-6 py-2 bg-gradient-to-r from-slate-900 to-teal-700 text-white rounded-full hover:shadow-lg transition">
+      Back to Home
+    </button>
+  </div>
+</nav>
+
+<section class="py-12 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- FORM -->
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-3xl p-8 border shadow-lg">
+        <h1 class="text-3xl font-bold mb-6 flex items-center gap-2">
+          <i data-lucide="leaf" class="text-teal-700"></i> Book Your Naturopathy Session
+        </h1>
+
+        <form id="naturopathy-form" class="space-y-6">
+          <input type="hidden" name="session" value="Initial Consultation (40 min)" />
+
+          <input name="name" placeholder="Full Name" required class="w-full p-3 rounded-xl border focus:border-teal-700 focus:outline-none" />
+          <input name="email" type="email" placeholder="Email" required class="w-full p-3 rounded-xl border focus:border-teal-700 focus:outline-none" />
+          <input name="phone" placeholder="Phone" required class="w-full p-3 rounded-xl border focus:border-teal-700 focus:outline-none" />
+
+          <select name="doctor_id" class="w-full p-3 rounded-xl border focus:border-teal-700 focus:outline-none">
+            <option value="1">Raj Agnani</option>
+          </select>
+
+          <input type="date" name="date" required class="w-full p-3 rounded-xl border focus:border-teal-700 focus:outline-none" />
+          <select name="time" id="time-select" required class="w-full p-3 rounded-xl border"></select>
+
+          <textarea name="message" placeholder="Health goals" class="w-full p-3 rounded-xl border focus:border-teal-700 focus:outline-none"></textarea>
+
+          <button type="submit" class="w-full py-4 bg-gradient-to-r from-slate-900 to-teal-700 text-white rounded-xl font-bold hover:shadow-lg transition">
+            Proceed to Payment
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="lg:col-span-1">
+      <div class="bg-white rounded-3xl p-6 border shadow-lg sticky top-8">
+        <h3 class="text-xl font-bold mb-6">Booking Summary</h3>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start space-x-3">
+             <i data-lucide="leaf" class="w-5 h-5 text-teal-700 mt-1"></i>
+             <div><div class="text-sm text-slate-500">Therapy Type</div><div class="font-semibold">Naturopathy</div></div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+             <i data-lucide="clock" class="w-5 h-5 text-teal-700 mt-1"></i>
+             <div><div class="text-sm text-slate-500">Session</div><div class="font-semibold">Initial Consultation (45 min)</div></div>
+          </div>
+        </div>
+
+        <div class="border-t pt-4 mb-6">
+          <div class="flex justify-between items-center text-lg font-bold">
+            <span>Total Amount</span>
+            <span class="text-2xl text-teal-700">$50</span>
+          </div>
+        </div>
+
+        <div class="bg-slate-100 rounded-xl p-4 space-y-3">
+          <div class="flex items-center space-x-2 text-sm">
+            <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i><span>Certified Practitioners</span>
+          </div>
+          <div class="flex items-center space-x-2 text-sm">
+            <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i><span>Secure Payment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAYMENT MODAL -->
+<div id="payment-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition">
+  <div class="w-[380px] rounded-3xl p-8 bg-white border shadow-2xl relative">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black"><i data-lucide="x"></i></button>
+
+    <h2 class="text-2xl font-bold text-center mb-5 text-teal-700">Scan & Pay Securely</h2>
+
+    <div class="flex justify-center mb-6">
+      <img src="./assets/images/QR_code1.jpg" class="w-[220px] rounded-xl shadow-lg object-contain" />
+    </div>
+
+    <input id="pm-patient" disabled class="w-full px-4 py-3 mb-4 border rounded-xl" />
+    <input id="transaction-id" placeholder="Transaction ID" class="w-full px-4 py-3 mb-5 border rounded-xl" />
+
+    <button id="finish-btn" onclick="finishPayment()" class="w-full py-3 rounded-xl font-semibold bg-slate-900 text-white flex justify-center gap-2">
+      Finish Payment
+    </button>
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+/* TIME SLOT GENERATION */
+const timeSelect = document.getElementById("time-select");
+let current = new Date(); current.setHours(9,0,0,0);
+const end = new Date(); end.setHours(22,0,0,0);
+while(current < end){
+  const next = new Date(current.getTime()+30*60000);
+  if(next > end) break;
+  const option = document.createElement("option");
+  option.value = current.toLocaleTimeString("en-IN",{hour:'2-digit',minute:'2-digit',hour12:true})+" - "+
+                 next.toLocaleTimeString("en-IN",{hour:'2-digit',minute:'2-digit',hour12:true});
+  option.textContent = option.value;
+  timeSelect.appendChild(option);
+  current = next;
+}
+
+/* FORM + MODAL LOGIC */
+let bookingData = {};
+document.getElementById('naturopathy-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  bookingData = {
+    patientName: fd.get("name"),
+    patientEmail: fd.get("email"),
+    patientPhone: fd.get("phone"),
+    appointmentDate: fd.get("date"),
+    appointmentTime: fd.get("time"),
+    sessionType: fd.get("session")
+  };
+  document.getElementById('pm-patient').value = bookingData.patientName;
+  document.getElementById('payment-modal').classList.remove('opacity-0','pointer-events-none');
+});
+
+function closeModal(){
+  document.getElementById('payment-modal').classList.add('opacity-0','pointer-events-none');
+}
+</script>
