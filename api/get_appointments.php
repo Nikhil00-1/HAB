@@ -12,10 +12,7 @@ $status   = $_GET["status"] ?? "upcoming";
 $doctorId = $_GET["doctor_id"] ?? null;
 
 if (!$doctorId) {
-  echo json_encode([
-    "success" => false,
-    "error" => "Doctor ID missing"
-  ]);
+  echo json_encode([]);
   exit;
 }
 
@@ -27,7 +24,8 @@ $stmt = $pdo->prepare("
     patient_email,
     appointment_date,
     appointment_time,
-    session_type
+    session_type,
+    medical_report   -- 🔥 THIS IS THE IMPORTANT ADDITION
   FROM appointments
   WHERE status = ?
     AND doctor_id = ?
@@ -38,3 +36,4 @@ $stmt->execute([$status, $doctorId]);
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($data);
+?>

@@ -11,16 +11,17 @@ $data = json_decode(file_get_contents("php://input"), true);
 $name = trim($data["name"] ?? "");
 $email = trim($data["email"] ?? "");
 $password = trim($data["password"] ?? "");
+$specialization = trim($data["specialization"] ?? "");
 
-if (!$name || !$email || !$password) {
+if (!$name || !$email || !$password || !$specialization) {
   echo json_encode(["success" => false, "error" => "All fields are required"]);
   exit;
 }
 
-/* 🔐 HASH PASSWORD */
+/* HASH PASSWORD */
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-/* ❌ CHECK EMAIL EXISTS */
+/* CHECK EMAIL EXISTS */
 $check = $pdo->prepare("SELECT id FROM doctors WHERE email = ?");
 $check->execute([$email]);
 
@@ -29,12 +30,12 @@ if ($check->fetch()) {
   exit;
 }
 
-/* ✅ INSERT DOCTOR */
+/* INSERT INTO DOCTORS TABLE */
 $stmt = $pdo->prepare("
-  INSERT INTO doctors (name, email, password)
-  VALUES (?, ?, ?)
+  INSERT INTO doctors (name, email, password, specialization)
+  VALUES (?, ?, ?, ?)
 ");
 
-$stmt->execute([$name, $email, $hashedPassword]);
+$stmt->execute([$name, $email, $hashedPassword, $specialization]);
 
 echo json_encode(["success" => true]);

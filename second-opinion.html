@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doctor Dashboard | HAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+<header class="bg-emerald-700 text-white px-6 py-4 flex justify-between items-center">
+  <h1 class="text-2xl font-bold">🩺 Doctor Dashboard</h1>
+  <span class="text-sm">Dr. Raj Agnani</span>
+</header>
+
+<main class="p-6 max-w-7xl mx-auto">
+
+  <!-- SERVICE TABS -->
+  <div class="flex gap-4 mb-6">
+    <button onclick="switchService('Initial')" 
+      class="service-tab px-5 py-2 rounded-lg font-semibold">
+      Initial Consultation
+    </button>
+
+    <button onclick="switchService('GP')" 
+      class="service-tab px-5 py-2 rounded-lg font-semibold">
+      GP Consultation
+    </button>
+
+    <button onclick="switchService('Second')" 
+      class="service-tab px-5 py-2 rounded-lg font-semibold">
+      Second Opinion
+    </button>
+  </div>
+
+  <!-- STATUS TABS -->
+  <div class="flex gap-4 mb-6">
+    <button id="tab-upcoming" onclick="switchStatus('upcoming')"
+      class="px-5 py-2 rounded-lg font-semibold">
+      Upcoming
+    </button>
+
+    <button id="tab-completed" onclick="switchStatus('completed')"
+      class="px-5 py-2 rounded-lg font-semibold">
+      Completed
+    </button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="bg-white rounded-xl shadow overflow-x-auto">
+    <table class="min-w-full text-sm">
+      <thead class="bg-gray-100 text-gray-600">
+        <tr>
+          <th class="px-4 py-3 text-left">Patient</th>
+          <th class="px-4 py-3 text-left">Date</th>
+          <th class="px-4 py-3 text-left">Time</th>
+          <th class="px-4 py-3 text-left">Session</th>
+          <th class="px-4 py-3 text-left">Report</th>
+          <th class="px-4 py-3 text-left">Action</th>
+        </tr>
+      </thead>
+      <tbody id="appointments-body"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<script>
+
+let currentService = "Initial";
+let currentStatus = "upcoming";
+
+document.addEventListener("DOMContentLoaded", () => {
+  highlightServiceTab();
+  highlightStatusTab();
+  loadAppointments();
+});
+
+async function loadAppointments() {
+  const res = await fetch(`/api/get_appointments.php?doctor_id=1&status=${currentStatus}`);
+  const data = await res.json();
+
+  const filtered = data.filter(a => {
+    if (currentService === "Initial") return a.session_type.includes("Initial");
+    if (currentService === "GP") return a.session_type.includes("GP");
+    if (currentService === "Second") return a.session_type.includes("Second");
+  });
+
+  renderAppointments(filtered);
+}
+
+function renderAppointments(list) {
+  const body = document.getElementById("appointments-body");
+  body.innerHTML = "";
+
+  if (list.length === 0) {
+    body.innerHTML = `<tr>
+      <td colspan="6" class="p-4 text-center">No appointments found</td>
+    </tr>`;
+    return;
+  }
+
+  list.forEach(a => {
+    body.innerHTML += `
+      <tr>
+        <td class="px-4 py-3 font-medium">${a.patient_name}</td>
+        <td class="px-4 py-3">${a.appointment_date}</td>
+        <td class="px-4 py-3">${a.appointment_time}</td>
+        <td class="px-4 py-3">${a.session_type}</td>
+        <td class="px-4 py-3">
+          ${a.medical_report 
+            ? `<a href="/${a.medical_report}" target="_blank"
+                 class="px-3 py-1 bg-blue-600 text-white rounded text-xs">
+                 View Report
+               </a>`
+            : `<span class="text-gray-400 text-xs">No File</span>`
+          }
+        </td>
+        <td class="px-4 py-3">
+          ${currentStatus === "upcoming"
+            ? `<button onclick="markCompleted(${a.id})"
+                 class="px-4 py-1 bg-emerald-600 text-white rounded text-xs">
+                 Complete
+               </button>`
+            : `<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full text-xs">
+                 Completed
+               </span>`
+          }
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function switchService(service) {
+  currentService = service;
+  highlightServiceTab();
+  loadAppointments();
+}
+
+function switchStatus(status) {
+  currentStatus = status;
+  highlightStatusTab();
+  loadAppointments();
+}
+
+function highlightServiceTab() {
+  const buttons = document.querySelectorAll(".service-tab");
+
+  buttons.forEach(btn => {
+    btn.classList.remove("bg-emerald-600","text-white");
+    btn.classList.add("bg-gray-200","text-gray-700");
+
+    if (
+      (currentService === "Initial" && btn.innerText.includes("Initial")) ||
+      (currentService === "GP" && btn.innerText.includes("GP")) ||
+      (currentService === "Second" && btn.innerText.includes("Second"))
+    ) {
+      btn.classList.remove("bg-gray-200","text-gray-700");
+      btn.classList.add("bg-emerald-600","text-white");
+    }
+  });
+}
+
+function highlightStatusTab() {
+  const up = document.getElementById("tab-upcoming");
+  const comp = document.getElementById("tab-completed");
+
+  up.classList.remove("bg-emerald-600","text-white");
+  comp.classList.remove("bg-emerald-600","text-white");
+
+  up.classList.add("bg-gray-200","text-gray-700");
+  comp.classList.add("bg-gray-200","text-gray-700");
+
+  if (currentStatus === "upcoming") {
+    up.classList.remove("bg-gray-200","text-gray-700");
+    up.classList.add("bg-emerald-600","text-white");
+  } else {
+    comp.classList.remove("bg-gray-200","text-gray-700");
+    comp.classList.add("bg-emerald-600","text-white");
+  }
+}
+
+async function markCompleted(id) {
+  await fetch(`/api/update_status.php?id=${id}&status=completed`);
+  loadAppointments();
+}
+
+</script>
+
+</body>
+</html>

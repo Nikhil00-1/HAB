@@ -13,6 +13,7 @@
       scroll-behavior: smooth;
     }
   </style>
+
 </head>
 
 <body class="min-h-screen bg-slate-50 text-slate-800 overflow-x-hidden">
@@ -28,14 +29,12 @@
 
       <div class="relative group inline-block">
 
-        <!-- BUTTON -->
         <button
           class="px-6 py-2 rounded-full bg-gradient-to-r from-slate-900 to-teal-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
           Book Appointment
           <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"></i>
         </button>
 
-        <!-- DROPDOWN -->
         <div class="absolute right-0 top-full w-56 mt-2
            bg-gradient-to-br from-white to-slate-50
            rounded-2xl shadow-2xl border border-slate-200/60
@@ -59,21 +58,59 @@
             <span class="font-medium">Naturopathy</span>
           </a>
 
+          <a href="second-opinion.html"
+            class="flex items-center gap-3 px-5 py-3 text-slate-700 hover:bg-teal-50 transition rounded-b-2xl">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-100">
+              <i data-lucide="file-search" class="w-4 h-4 text-teal-700"></i>
+            </div>
+            <span class="font-medium">Second Opinion</span>
+          </a>
+
+          <a href="gp-consultation.html"
+            class="flex items-center gap-3 px-5 py-3 text-slate-700 hover:bg-teal-50 transition rounded-b-2xl">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-teal-100">
+              <i data-lucide="stethoscope" class="w-4 h-4 text-teal-700"></i>
+            </div>
+            <span class="font-medium">GP Consultation</span>
+          </a>
         </div>
       </div>
 
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="px-6 pt-20 pb-24 text-center">
-    <h1 class="text-5xl md:text-6xl font-bold mb-6">
+<!-- HERO -->
+<section class="relative px-6 pt-20 pb-24 text-center min-h-[510px] md:h-[510px] overflow-hidden">
+
+  <!-- Background Images -->
+  <div class="absolute inset-0 z-0">
+    <!-- First image visible by default -->
+    <img src="backg1.png"
+      class="bg-slide absolute inset-0 w-full h-full object-cover brightness-50 opacity-90 transition-opacity duration-1000">
+
+    <img src="backg2.png"
+      class="bg-slide absolute inset-0 w-full h-full object-cover brightness-50 opacity-0 transition-opacity duration-1000">
+
+    <img src="backg3.png"
+      class="bg-slide absolute inset-0 w-full h-full object-cover brightness-50 opacity-0 transition-opacity duration-1000">
+
+    <img src="backg4.png"
+      class="bg-slide absolute inset-0 w-full h-full object-cover brightness-50 opacity-0 transition-opacity duration-1000">
+  </div>
+
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-black/40 z-0"></div>
+
+  <!-- Content (unchanged) -->
+  <div class="relative z-10">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white/80 leading-tight">
       Transform Your Life Through
-      <span class="block bg-gradient-to-r from-slate-900 to-teal-700 bg-clip-text text-transparent">
+      <span class="block pb-4 bg-teal-600 bg-clip-text text-transparent">
         Holistic Healing
       </span>
     </h1>
-    <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-12">
+
+    <p class="text-xl text-white max-w-3xl mx-auto mb-12">
       Discover world-class alternative medicine therapies tailored to your unique journey toward wellness.
     </p>
 
@@ -88,7 +125,29 @@
         <i data-lucide="award" class="w-5 h-5 text-teal-600"></i> Expert Practitioners
       </div>
     </div>
-  </section>
+  </div>
+
+</section>
+
+<!-- SLIDER SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const slides = document.querySelectorAll(".bg-slide");
+  let currentSlide = 0;
+  slides[0].style.opacity = "0.9";
+
+  setInterval(() => {
+    slides[currentSlide].style.opacity = "0";
+
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    slides[currentSlide].style.opacity = "0.9";
+
+  }, 4000);
+
+});
+</script>
 
   <!-- STATS -->
   <section class="px-6 py-16">
@@ -112,7 +171,6 @@
     </div>
   </section>
 
-  <!-- HYPNOTHERAPY -->
   <section id="hypnotherapy-section" class="px-6 py-20 bg-white text-center">
     <i data-lucide="brain" class="w-16 h-16 text-teal-600 mx-auto mb-6"></i>
     <h2 class="text-4xl font-bold mb-4">Hypnotherapy</h2>
@@ -122,7 +180,7 @@
       Hypnotherapy →</a>
   </section>
 
-  <!-- WHY CHOOSE HAB -->
+  <!-- WHY CHOOSE HAB !-->
   <section class="px-6 py-20 bg-slate-100">
     <div class="text-center mb-12">
       <h2 class="text-4xl font-bold mb-4">Why Choose HAB</h2>
@@ -186,8 +244,8 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="px-6 py-24 bg-gradient-to-r from-slate-900 to-teal-700 text-white text-center">
+  <!--CTA-->
+  <section class="px-6 pt-14 pb-2 bg-gradient-to-r from-slate-900 to-teal-700 text-white text-center">
     <h2 class="text-4xl font-bold mb-4">Begin Your Healing Journey Today</h2>
     <p class="mb-8">Join thousands who have discovered holistic transformation.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -195,6 +253,17 @@
         class="px-10 py-4 bg-white text-slate-900 rounded-full font-bold shadow">Schedule Consultation</a>
       <button class="px-10 py-4 border border-white rounded-full font-bold">Download Brochure</button>
     </div>
+
+    <div class="mt-20">
+      <div class="text-center text-lg">Follow us!</div>
+      <div class="border-b-2 border-green-400 w-48 mx-auto mt-1"></div>
+      <div class="flex justify-center gap-3 mt-2">
+        <a href="https://www.instagram.com/hab.mumbai?igsh=NnI5OWZ5aDcwbGN2" class="hover:text-gray-300"><i
+            data-lucide="instagram" class="w-5 h-5"></i></a>
+        <a href="https://www.facebook.com/share/19Zfwi5ZfG/" class="hover:text-gray-300"><i data-lucide="facebook"
+            class="w-5 h-5"></i></a>
+      </div>
+
   </section>
 
   <!-- ORIGINAL FOOTER -->

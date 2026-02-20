@@ -51,41 +51,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ================= FINISH PAYMENT ================= */
   window.finishPayment = async function () {
+    const txn = document.getElementById("transaction-id").value.trim();
+    if (!txn) return alert("Enter transaction ID");
 
-    const txnInput = document.getElementById("transaction-id");
-    if (!txnInput) {
-      alert("Transaction input not found");
-      return;
-    }
-
-    const txn = txnInput.value.trim();
-    if (!txn) {
-      alert("Enter transaction ID");
-      return;
-    }
-
-    bookingData.transactionId = txn;
+    const form = document.getElementById("bookingForm");
+    const fd = new FormData(form);   // collects ALL inputs + file
+    fd.append("transactionId", txn);
 
     try {
       const res = await fetch("/api/create_booking.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData)
+        body: fd
       });
 
       const data = await res.json();
 
-      if (!data.success) {
-        alert("❌ " + data.error);
-        return;
-      }
+      if (!data.success) return alert("❌ " + data.error);
 
       alert("✅ Booking confirmed");
       window.location.reload();
 
     } catch (err) {
       console.error(err);
-      alert("❌ Server error. Please try again.");
+      alert("❌ Server error");
     }
   };
 
